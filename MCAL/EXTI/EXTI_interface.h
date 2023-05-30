@@ -16,7 +16,7 @@
 #define MEXTI_RISING_EDGE               0
 #define MEXTI_FALLING_EDGE              1
 #define MEXTI_ON_CHANGE                 2
-
+#define	MEXTI_LINE0			0
 
 void MEXTI_voidInit(void);
 void MEXTI_voidEnableInterrupt(u8 Copy_u8EXTIline);

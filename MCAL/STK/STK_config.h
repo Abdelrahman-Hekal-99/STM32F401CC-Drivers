@@ -24,7 +24,7 @@
             *ENABLE
             *DISABLE
 */
-#define CLK_INTERUPT_SELECTION        DISABLE
+#define CLK_INTERUPT_SELECTION        ENABLE
 
 
 #endif

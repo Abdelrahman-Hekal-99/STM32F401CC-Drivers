@@ -14,8 +14,9 @@
 #include "BIT_MATH.h"
 
 #include "STK_interface.h"
-#include "STK_config.h"
 #include "STK_private.h"
+#include "STK_config.h"
+
 
 void ( * MSTK_CallBack ) ( void );
 
@@ -32,9 +33,9 @@ void MSTK_voidInit (void)
     //Intializing The Clock Source
 
     #if CLK_SOURCE_SELECTION ==  (AHB/8)
-    
+
     CLR_BIT(STK_CTRL , CLKSOURCE);
-    
+
     //processor clock is AHB devided by 1
     #elif CLK_SOURCE_SELECTION == PROCESSOR_CLOCK
 
@@ -45,16 +46,16 @@ void MSTK_voidInit (void)
     //INTERUPT ENABLE / DISABLE
 
     #if CLK_INTERUPT_SELECTION ==  DISABLE
-    
+
     CLR_BIT(STK_CTRL , TICKINT);
-    
+
     #elif CLK_INTERUPT_SELECTION == ENABLE
 
     SET_BIT(STK_CTRL , TICKINT);
 
     #endif
 
-    
+
     //Counter Enable
 
     SET_BIT(STK_CTRL , ENABLE) ;
@@ -82,21 +83,35 @@ void MSTK_voidSetBusyWait (u32 Copy_u32WatingTime)
 }
 
 
-void MSTK_voidSetIntervalSingle (u32 Copy_u32WatingTime , void (*ptr)(void))
+void MSTK_voidSetIntervalSingle (u32 Copy_u32Ticks , void (*ptr)(void))
 {
-    STK_LOAD = Copy_u32WatingTime - 1;
+
+	CLR_BIT(STK_CTRL , ENABLE) ;
+
+	STK_VAL = 0;
+
+    STK_LOAD = Copy_u32Ticks;
 
     MSTK_CallBack = ptr;
+
+
+    SET_BIT(STK_CTRL , TICKINT);
+
+    SET_BIT(STK_CTRL , ENABLE) ;
 }
 
 u32 MSTK_u32GetElapsedTime (void)
 {
     u32 Local_u32Elapsed ;
-    Local_u32Elapsed = (STK_LOAD) - (STK_VAL) ; 
+    Local_u32Elapsed = (STK_LOAD) - (STK_VAL) ;
     return  Local_u32Elapsed ;
 }
 
-u32 MSTK_u32GetRemainingTime (void) 
+u32 MSTK_u32GetRemainingTime (void)
 {
-    return STK_VAL ; 
+    return STK_VAL ;
+}
+void MSTK_voidResetSysTick(void)
+{
+	STK_VAL = 0;
 }

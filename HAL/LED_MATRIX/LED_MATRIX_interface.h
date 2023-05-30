@@ -3,29 +3,18 @@
 /*********************************************************************/
 /*********************************************************************/
 /*****************     Auother : Abdelrahman Hekal   *****************/
-/*****************     Creation Date : 8 may ,2023   *****************/
-/*****************     SWC : STK                     *****************/
+/*****************     Creation Date : 15 may ,2023   *****************/
+/*****************     SWC : LED_MATRIX              *****************/
 /*****************     Version:1.00                  *****************/
 /*****************     Compiler: GNU ARM GCC         *****************/
 /*********************************************************************/
 /*********************************************************************/
 
-#ifndef STK_INTERFACE_H
-#define STK_INTERFACE_H
+#ifndef 	LED_MATRIX_INTERFACE_H
+#define 	LED_MATRIX_INTERFACE_H
 
-
-void MSTK_voidInit (void);
-
-void MSTK_voidStart( u32 Copy_PreloadValue );
-
-void MSTK_voidSetBusyWait (u32 Copy_u32WatingTime);
-
-void MSTK_voidSetIntervalSingle (u32 Copy_u32Ticks , void (*ptr)(void));
-
-u32 MSTK_u32GetElapsedTime (void) ;
-
-u32 MSTK_u32GetRemainingTime (void) ;
-void MSTK_voidResetSysTick(void);
-
+void HLEDMAT_voidInit(void);
+void HLEDMAT_voidDisplay(u8 * Copy_pu8Data);
+static void voidDisableAllColumns(void);
 
 #endif

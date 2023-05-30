@@ -3,29 +3,24 @@
 /*********************************************************************/
 /*********************************************************************/
 /*****************     Auother : Abdelrahman Hekal   *****************/
-/*****************     Creation Date : 8 may ,2023   *****************/
-/*****************     SWC : STK                     *****************/
+/*****************     Creation Date : 29 may ,2023  *****************/
+/*****************     SWC : Serial To Parallel      *****************/
 /*****************     Version:1.00                  *****************/
 /*****************     Compiler: GNU ARM GCC         *****************/
 /*********************************************************************/
 /*********************************************************************/
 
-#ifndef STK_INTERFACE_H
-#define STK_INTERFACE_H
+#ifndef 	STP_CONFIG_H
+#define 	STP_CONFIG_H
 
+#define STP_DATA_PORT   	 MGPIO_PORTA
+#define STP_DATA_PIN    	 PIN0
 
-void MSTK_voidInit (void);
+#define STP_BIT_LATCH_PORT   MGPIO_PORTA
+#define STP_BIT_LATCH_PIN    PIN1
 
-void MSTK_voidStart( u32 Copy_PreloadValue );
-
-void MSTK_voidSetBusyWait (u32 Copy_u32WatingTime);
-
-void MSTK_voidSetIntervalSingle (u32 Copy_u32Ticks , void (*ptr)(void));
-
-u32 MSTK_u32GetElapsedTime (void) ;
-
-u32 MSTK_u32GetRemainingTime (void) ;
-void MSTK_voidResetSysTick(void);
+#define STP_BYTE_LATCH_PORT  MGPIO_PORTA
+#define STP_BYTE_LATCH_PIN   PIN2
 
 
 #endif
